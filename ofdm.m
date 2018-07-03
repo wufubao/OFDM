@@ -2,7 +2,7 @@ clear;
 clc;
 close all;
 %% Config
-M = 16;                 % 16-QAM 
+M = 64;                 % 16-QAM 
 k = log2(M);            % Number of bits per symbol
 R = 9216;               % Total bits length (Can be devide by NFFT)
 OverSamp = 4;           % Upsampling factor
@@ -61,6 +61,7 @@ Span = Fs/2;
 subplot(1,2,1);
 plot(f,p)
 xlim([Fcenter-Span/2, Fcenter+Span/2]);
+ylim([-100,-40]);
 xlabel('Frequency[MHz]');
 ylabel('Mag.[dBFs]')
 title('Reciever''s Spectrum');
@@ -69,7 +70,7 @@ I = real(fftSignal);
 Q = imag(fftSignal);
 subplot(1,2,2);
 scatter(I,Q);
-title(sprintf('Reciever''s constelation'));
+title(sprintf('Reciever''s Constelation'));
 
 [numErr,BER] = biterr(dataIn,dataOut);
 fprintf('The BER is %f%%, with %d errors\n',BER*100,numErr);
